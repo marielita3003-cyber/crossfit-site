@@ -26,7 +26,7 @@ const Hero = () => {
                 </h1>
 
                 <h2 className="max-w-xl text-4xl text-white/70">
-                    {/* {t('hero.subtitle')} */}dfghjkljghjklkh
+                    {/* {t('hero.subtitle')} */}
                     <a href="https://wa.me/972547244563" target="_blank" rel="noreferrer" className="text-white hover:text-orange-500" role="link" aria-label="WhatsApp" dir="ltr">+972547244563</a>
                 </h2>
 
