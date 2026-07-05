@@ -8,12 +8,7 @@ export const he = {
   },
   marquee: ["כוח", "סיבולת", "טכניקה", "קהילה", "מנטליות", "תוצאות"],
   stats: {
-    items: [
-      { value: 300, suffix: "+", label: "מתאמנים פעילים" },
-      { value: 40, suffix: "+", label: "אימונים בשבוע" },
-      { value: 10, suffix: "+", label: "שנות ניסיון" },
-      { value: 70, suffix: "+", label: "מגיל 6 ועד" },
-    ],
+    statement: "אלפי מתאמנים שעברו אצלנו, מוזמנים לבוא להיות חלק מהקהילה הכי שווה.",
   },
   about: {
     title: "אימונים בראשון לציון - Crossfit Impulso",

@@ -8,12 +8,7 @@ export const en = {
   },
   marquee: ["Strength", "Endurance", "Technique", "Community", "Mindset", "Results"],
   stats: {
-    items: [
-      { value: 300, suffix: "+", label: "Active members" },
-      { value: 40, suffix: "+", label: "Classes a week" },
-      { value: 10, suffix: "+", label: "Years of experience" },
-      { value: 70, suffix: "+", label: "From age 6 up to" },
-    ],
+    statement: "Thousands of athletes have trained with us — come be part of the best community around.",
   },
   about: {
     title: "Training in Rishon LeZion - Crossfit Impulso",
