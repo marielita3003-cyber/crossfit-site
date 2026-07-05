@@ -1,17 +1,29 @@
 import { ChevronDownIcon } from 'lucide-react'
 import i18n from '../i18n'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
 
     const [open, setOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 24)
+        onScroll()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
     const changeLang = (lng: 'en' | 'ru' | 'he') => {
         i18n.changeLanguage(lng)
     }
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90">
+        <header className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${scrolled
+            ? 'border-black/10 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl dark:border-white/10 dark:bg-black/70'
+            : 'border-transparent bg-white/90 backdrop-blur-md dark:bg-black/90'
+            }`}>
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
                 <div className="text-lg font-bold">
                     <Link to="/">
@@ -48,7 +60,7 @@ const Header = () => {
                         </a>
 
                         <a
-                            href="https://wa.me/972547244553?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%90%D7%99%D7%9E%D7%95%D7%9F%20%D7%A0%D7%99%D7%A1%D7%99%D7%95%D7%9F%20%F0%9F%92%AA"
+                            href="https://wa.me/972547244553?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%90%D7%99%D7%9E%D7%95%D7%9F%20%D7%A0%D7%99%D7%A1%D7%99%D7%95%D7%9F"
                             target="_blank"
                             rel="noreferrer"
                             className="group flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition hover:bg-black dark:border-white/10 dark:hover:bg-white"

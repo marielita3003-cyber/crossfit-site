@@ -1,5 +1,6 @@
 
 import About from "../sections/About";
+import { Marquee } from "../components/ui/Marquee";
 // import AppSection from "../sections/AppSection";
 import Classes from "../sections/Classes";
 import Hero from "../sections/Hero";
@@ -10,6 +11,7 @@ export default function HomePage() {
     return (
         <>
             <Hero />
+            <Marquee />
             <About />
             <Classes />
             {/* <AppSection /> */}

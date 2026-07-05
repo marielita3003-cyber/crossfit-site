@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '../components/ui/SectionTitle'
 import { Button } from '../components/ui/Button'
+import { Reveal } from '../components/ui/Reveal'
 
 type InstagramPost = {
     id: string
@@ -65,21 +66,22 @@ const InstagramSection = () => {
 
                 {!loading && !error && (
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-                        {posts.map((post) => (
-                            <a
-                                key={post.id}
-                                href={post.permalink}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group block overflow-hidden rounded-3xl"
-                            >
-                                <img
-                                    src={post.image}
-                                    alt={post.caption || 'Instagram post'}
-                                    className="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
-                                    loading="lazy"
-                                />
-                            </a>
+                        {posts.map((post, i) => (
+                            <Reveal key={post.id} delay={(i % 5) * 100}>
+                                <a
+                                    href={post.permalink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="group block overflow-hidden rounded-3xl"
+                                >
+                                    <img
+                                        src={post.image}
+                                        alt={post.caption || 'Instagram post'}
+                                        className="aspect-square w-full object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-1"
+                                        loading="lazy"
+                                    />
+                                </a>
+                            </Reveal>
                         ))}
                     </div>
                 )}

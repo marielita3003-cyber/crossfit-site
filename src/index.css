@@ -11,3 +11,108 @@ body,
 body {
   margin: 0;
 }
+
+/* ===== Animations ===== */
+
+/* Cinematic slow zoom for hero background */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Hero entrance */
+@keyframes hero-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-in {
+  opacity: 0;
+  animation: hero-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Scroll reveal (driven by Reveal component) */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee strip */
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-rtl 22s linear infinite;
+  will-change: transform;
+}
+
+/* 3D tilt cards */
+.tilt-wrap {
+  perspective: 900px;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+.tilt-card .tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.25),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+
+.tilt-card:hover .tilt-glare {
+  opacity: 1;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns,
+  .animate-marquee,
+  .hero-in,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

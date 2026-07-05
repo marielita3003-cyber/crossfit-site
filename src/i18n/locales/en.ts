@@ -6,6 +6,7 @@ export const en = {
     cta: "Book a free trial",
     secondary: "Schedule",
   },
+  marquee: ["Strength", "Endurance", "Technique", "Community", "Mindset", "Results"],
   about: {
     title: "Training in Rishon LeZion - Crossfit Impulso",
     lead: `We believe that to be healthy and fit, you need to improve all components of physical fitness. Our training is suitable for everyone, regardless of current fitness level, and no previous experience is needed.`,
@@ -60,6 +61,7 @@ export const en = {
     title: "Instagram",
     subtitle: "Latest posts from our community",
     follow: "Follow us on Instagram",
+    error: "Latest posts are available on the live site — follow us on Instagram!",
   },
   schedule: {
     title: "Schedule",
