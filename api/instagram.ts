@@ -12,6 +12,16 @@ export async function GET(_req: Request): Promise<Response> {
       );
     }
 
+    // Temporary diagnostics (does NOT expose the token value)
+    if (new URL(_req.url).searchParams.get("debug") === "1") {
+      return Response.json({
+        tokenLen: token.length,
+        prefix: token.slice(0, 4),
+        hasNonAscii: /[^\x20-\x7E]/.test(token),
+        hasWhitespace: /\s/.test(token),
+      });
+    }
+
     const url = new URL("https://graph.instagram.com/me/media");
     url.searchParams.set("fields", FIELDS);
     url.searchParams.set("limit", "10");
