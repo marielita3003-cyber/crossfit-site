@@ -1,7 +1,7 @@
 const FIELDS =
   "id,caption,media_type,media_url,permalink,thumbnail_url,timestamp";
 
-export default async function handler(req: Request): Promise<Response> {
+export async function GET(_req: Request): Promise<Response> {
   try {
     const token = process.env.INSTAGRAM_ACCESS_TOKEN;
 

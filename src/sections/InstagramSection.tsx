@@ -45,7 +45,7 @@ const InstagramSection = () => {
                     <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => window.open('https://instagram.com', '_blank')}
+                        onClick={() => window.open('https://instagram.com/crossfit_impulso', '_blank')}
                     >
                         {t('instagram.follow')}
                     </Button>
