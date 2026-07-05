@@ -7,6 +7,14 @@ export const en = {
     secondary: "Schedule",
   },
   marquee: ["Strength", "Endurance", "Technique", "Community", "Mindset", "Results"],
+  stats: {
+    items: [
+      { value: 300, suffix: "+", label: "Active members" },
+      { value: 40, suffix: "+", label: "Classes a week" },
+      { value: 10, suffix: "+", label: "Years of experience" },
+      { value: 70, suffix: "+", label: "From age 6 up to" },
+    ],
+  },
   about: {
     title: "Training in Rishon LeZion - Crossfit Impulso",
     lead: `We believe that to be healthy and fit, you need to improve all components of physical fitness. Our training is suitable for everyone, regardless of current fitness level, and no previous experience is needed.`,

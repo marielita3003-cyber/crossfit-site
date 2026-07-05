@@ -1,3 +1,5 @@
+import { WordReveal } from './WordReveal'
+
 interface SectionTitleProps {
     label?: string
     title: string
@@ -13,7 +15,7 @@ export const SectionTitle = ({ label, title, subtitle, center = false }: Section
             </p>
         )}
         <h2 className="text-4xl font-black uppercase italic tracking-tighter sm:text-5xl">
-            {title}
+            <WordReveal text={title} />
         </h2>
         {subtitle && (
             <p className="mt-4 text-lg text-black/60 dark:text-white/60">

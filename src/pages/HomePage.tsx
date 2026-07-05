@@ -1,6 +1,7 @@
 
 import About from "../sections/About";
 import { Marquee } from "../components/ui/Marquee";
+import { Stats } from "../components/ui/Stats";
 // import AppSection from "../sections/AppSection";
 import Classes from "../sections/Classes";
 import Hero from "../sections/Hero";
@@ -13,6 +14,7 @@ export default function HomePage() {
             <Hero />
             <Marquee />
             <About />
+            <Stats />
             <Classes />
             {/* <AppSection /> */}
             {/* <TeamSection /> */}
