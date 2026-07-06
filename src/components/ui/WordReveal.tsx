@@ -9,7 +9,8 @@ interface WordRevealProps {
 
 /**
  * Splits text into words and reveals them one by one
- * when the element scrolls into view.
+ * when the element scrolls into view. Includes a scroll fallback
+ * so the text can never get stuck invisible.
  */
 export const WordReveal = ({ text, className = '', stagger = 80 }: WordRevealProps) => {
     const ref = useRef<HTMLSpanElement>(null)
@@ -18,22 +19,44 @@ export const WordReveal = ({ text, className = '', stagger = 80 }: WordRevealPro
     useEffect(() => {
         const el = ref.current
         if (!el) return
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+
+        const inView = () => el.getBoundingClientRect().top < window.innerHeight * 0.95
+
+        if (inView()) {
             setVisible(true)
             return
         }
 
+        let done = false
+        const show = () => {
+            if (done) return
+            done = true
+            setVisible(true)
+            cleanup()
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
-                if (entries[0].isIntersecting) {
-                    setVisible(true)
-                    observer.disconnect()
-                }
+                if (entries.some((e) => e.isIntersecting)) show()
             },
-            { threshold: 0.01, rootMargin: '5000px 0px -30px 0px' },
+            { threshold: 0.01, rootMargin: '5000px 0px -20px 0px' },
         )
+
+        const onScrollCheck = () => {
+            if (inView()) show()
+        }
+
+        const cleanup = () => {
+            observer.disconnect()
+            window.removeEventListener('scroll', onScrollCheck)
+            window.removeEventListener('resize', onScrollCheck)
+        }
+
         observer.observe(el)
-        return () => observer.disconnect()
+        window.addEventListener('scroll', onScrollCheck, { passive: true })
+        window.addEventListener('resize', onScrollCheck, { passive: true })
+
+        return cleanup
     }, [])
 
     const words = text.split(' ')
