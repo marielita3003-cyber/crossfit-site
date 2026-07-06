@@ -19,6 +19,12 @@ export const Reveal = ({ children, delay = 0, className = '' }: RevealProps) => 
         const el = ref.current
         if (!el) return
 
+        // Anything already scrolled past should be visible immediately
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+            setVisible(true)
+            return
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -28,7 +34,9 @@ export const Reveal = ({ children, delay = 0, className = '' }: RevealProps) => 
                     }
                 })
             },
-            { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
+            // Huge top margin: elements above the viewport (fast scroll / jump)
+            // always count as visible, so nothing gets stuck transparent.
+            { threshold: 0.01, rootMargin: '5000px 0px -30px 0px' },
         )
 
         observer.observe(el)

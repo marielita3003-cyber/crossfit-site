@@ -18,6 +18,11 @@ export const WordReveal = ({ text, className = '', stagger = 80 }: WordRevealPro
     useEffect(() => {
         const el = ref.current
         if (!el) return
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+            setVisible(true)
+            return
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
                 if (entries[0].isIntersecting) {
@@ -25,7 +30,7 @@ export const WordReveal = ({ text, className = '', stagger = 80 }: WordRevealPro
                     observer.disconnect()
                 }
             },
-            { threshold: 0.3 },
+            { threshold: 0.01, rootMargin: '5000px 0px -30px 0px' },
         )
         observer.observe(el)
         return () => observer.disconnect()
