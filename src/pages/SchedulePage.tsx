@@ -180,7 +180,7 @@ export default function SchedulePage() {
                         return (
                             <div key={day} className="flex flex-col">
 
-                                <div className={`mb-6 text-center transition ${isToday ? 'text-yellow-400' : 'text-black/30 dark:text-white/30'}`}>
+                                <div className={`mb-6 text-center transition ${isToday ? 'text-orange-500' : 'text-black/30 dark:text-white/30'}`}>
                                     <div className="text-xl font-black uppercase tracking-widest leading-none">
                                         {t(`days.${day.slice(0, 3).toLowerCase()}`)}
                                     </div>
@@ -218,10 +218,10 @@ export default function SchedulePage() {
                         const isToday = idx === todayIdx
                         return weekGrid[idx].length > 0 && (
                             <div key={day}>
-                                <h2 className="mb-4 text-2xl font-black uppercase italic tracking-widest underline decoration-yellow-400 decoration-4 underline-offset-8">
+                                <h2 className="mb-4 text-2xl font-black uppercase italic tracking-widest underline decoration-orange-500 decoration-4 underline-offset-8">
                                     {t(`days.${day.slice(0, 3).toLowerCase()}`)}
                                     <span className="ml-2 text-lg opacity-40 not-italic">({getDayDate(idx)})</span>
-                                    {isToday && <span className="ml-3 text-sm font-bold not-italic text-yellow-400">— {t('schedule.today')}</span>}
+                                    {isToday && <span className="ml-3 text-sm font-bold not-italic text-orange-500">— {t('schedule.today')}</span>}
                                 </h2>
                                 <div className="grid gap-3 sm:grid-cols-2">
                                     {weekGrid[idx].map(cl => (
@@ -229,9 +229,9 @@ export default function SchedulePage() {
                                             <div className="text-sm font-bold text-black/50 dark:text-white/50">
                                                 {cl.timeStart} — {cl.timeEnd}
                                             </div>
-                                            <div className="text-xl font-black uppercase">{cl.title}</div>
+                                            <div className="text-xl font-black uppercase">{translateBoostapp(cl.title)}</div>
                                             <div className="mt-1 flex items-center justify-between">
-                                                <span className="text-sm opacity-60">{cl.coach}</span>
+                                                <span className="text-sm opacity-60">{translateBoostapp(cl.coach)}</span>
                                                 {cl.full && <Badge variant="red">{t('schedule.full')}</Badge>}
                                             </div>
                                         </Card>

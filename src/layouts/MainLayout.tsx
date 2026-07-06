@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { MapPin, Phone, Accessibility } from 'lucide-react'
 import Header from '../components/Header'
 import { CustomCursor } from '../components/ui/CustomCursor'
+import { FloatingWhatsApp } from '../components/ui/FloatingWhatsApp'
 
 const MainLayout = ({ children }: React.PropsWithChildren) => {
     const location = useLocation()
@@ -11,6 +12,7 @@ const MainLayout = ({ children }: React.PropsWithChildren) => {
     return (
         <div className="min-h-screen flex flex-col bg-white dark:bg-black text-black dark:text-white">
             <CustomCursor />
+            <FloatingWhatsApp />
             <Header />
 
             {/* key on pathname re-mounts the page so the transition plays on every route change */}
@@ -38,6 +40,13 @@ const MainLayout = ({ children }: React.PropsWithChildren) => {
                         >
                             {t('footer.navigate')}
                         </a>
+                        <iframe
+                            title="CrossFit Impulso Map"
+                            src="https://maps.google.com/maps?q=31.9931068,34.7517585&z=16&output=embed"
+                            className="mt-4 h-40 w-full rounded-2xl border-0 grayscale transition hover:grayscale-0"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        />
                     </div>
 
                     {/* Contact */}

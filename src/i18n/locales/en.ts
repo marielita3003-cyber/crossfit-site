@@ -10,6 +10,69 @@ export const en = {
   stats: {
     statement: "Thousands of athletes have trained with us — come be part of the best community around.",
   },
+  howItWorks: {
+    label: "Getting started is easy",
+    title: "How do I join?",
+    steps: [
+      { title: "Send a message", text: "Tap the WhatsApp button and text us. We answer fast — promise." },
+      { title: "Come for a trial class", text: "Your first workout is matched to your exact level — no pressure, no commitment." },
+      { title: "Join the community", text: "Pick the plan that fits you and start the journey to your strongest self." },
+    ],
+    cta: "Book a trial class",
+  },
+  gallery: {
+    label: "Moments from the box",
+    title: "Life at Impulso",
+  },
+  testimonials: {
+    label: "What people say",
+    title: "Our members share",
+    badge: "from 116 Google reviews",
+    reviews: [
+      {
+        name: "Vladi",
+        text: "One of the most fun places to come to — a professional, warm and social coaching team that turns everyone into one family. I enjoy every single workout and always leave with a smile.",
+      },
+      {
+        name: "Daria",
+        text: "The best! A highly professional, attentive and supportive team. The most fun atmosphere, full of good energy. Every workout flies by and you always leave feeling you did something good for yourself.",
+      },
+      {
+        name: "Dor",
+        text: "An excellent team that listens to every athlete. A wide variety of workouts throughout the week. The box has a very warm, family-like atmosphere.",
+      },
+    ],
+  },
+  faq: {
+    label: "FAQ",
+    title: "Everything you wanted to know",
+    items: [
+      {
+        q: "I'm not in shape — is this for me?",
+        a: "It's exactly for you! Every exercise is scaled to your personal level, so beginners and advanced athletes train together in the same class. You don't come fit — you come to get fit.",
+      },
+      {
+        q: "Do I need previous CrossFit experience?",
+        a: "Not at all. Most of our members arrived with zero experience. Our coaches guide everyone step by step, from the basics to advanced techniques.",
+      },
+      {
+        q: "From what age can you train?",
+        a: "Our members range from age 6 to 70+. We have dedicated kids' classes, and every adult class is adapted to any age and level.",
+      },
+      {
+        q: "What should I bring to my first class?",
+        a: "Comfortable sports clothes, trainers and a water bottle — that's it. Everything else (equipment, guidance and good vibes) is on us.",
+      },
+      {
+        q: "How do I book a trial class?",
+        a: "Just send us a WhatsApp message (green button below) or call 054-724-4553 and we'll schedule a class at a time that works for you.",
+      },
+      {
+        q: "How many workouts a week are recommended?",
+        a: "For beginners we recommend 2-3 workouts a week — a pace that lets the body adapt and get stronger. From there, most members find they want more.",
+      },
+    ],
+  },
   footer: {
     visitUs: "Visit us",
     address: "Yosef Sapir 8, Rishon LeZion",

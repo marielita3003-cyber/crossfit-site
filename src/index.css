@@ -197,6 +197,23 @@ body {
   }
 }
 
+/* Floating WhatsApp pulse */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.wa-pulse {
+  animation: wa-pulse 2.2s ease-out infinite;
+}
+
 /* Magnetic button */
 .magnetic {
   display: inline-block;
