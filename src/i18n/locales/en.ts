@@ -10,6 +10,15 @@ export const en = {
   stats: {
     statement: "Thousands of athletes have trained with us — come be part of the best community around.",
   },
+  footer: {
+    visitUs: "Visit us",
+    address: "Yosef Sapir 8, Rishon LeZion",
+    navigate: "Navigate with Google Maps",
+    contact: "Contact us",
+    accessibilityTitle: "Accessibility",
+    accessibility:
+      "We work to make the club accessible to people with disabilities in accordance with the Equal Rights for Persons with Disabilities Law. Please note: there are stairs at the entrance — our staff is available and happy to assist anyone who needs help entering and exiting. For accessibility questions, requests or advance coordination: 054-724-4553.",
+  },
   about: {
     title: "Training in Rishon LeZion - Crossfit Impulso",
     lead: `We believe that to be healthy and fit, you need to improve all components of physical fitness. Our training is suitable for everyone, regardless of current fitness level, and no previous experience is needed.`,
