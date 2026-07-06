@@ -2,13 +2,14 @@ import { useTranslation } from 'react-i18next'
 import { SectionTitle } from '../components/ui/SectionTitle'
 import { Reveal } from '../components/ui/Reveal'
 
+// Each desktop row adds up to exactly 4 columns: [2+1+1] then [1+1+2]
 const photos = [
     { src: '/gallery/team-arena.jpg', wide: true },
     { src: '/gallery/handstand.jpg', wide: false },
-    { src: '/gallery/competition.jpg', wide: true },
     { src: '/gallery/girls-team.jpg', wide: false },
-    { src: '/gallery/class-bw.jpg', wide: true },
     { src: '/gallery/rowing.jpg', wide: false },
+    { src: '/gallery/competition.jpg', wide: false },
+    { src: '/gallery/class-bw.jpg', wide: true },
 ]
 
 const Gallery = () => {
@@ -28,7 +29,7 @@ const Gallery = () => {
                             delay={i * 100}
                             className={photo.wide ? 'col-span-2' : 'col-span-1'}
                         >
-                            <div className="group h-56 overflow-hidden rounded-2xl sm:h-64">
+                            <div className="group h-60 overflow-hidden rounded-2xl sm:h-72">
                                 <img
                                     src={photo.src}
                                     alt={t('gallery.title')}
