@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Never Again Challenge by BTW | תחרות כושר וירי טקטי</title>
+<meta name="description" content="Never Again Challenge by BTW — תחרות ייחודית המשלבת כושר גופני, ירי ותפקוד תחת עומס. 08.10.2026, מטווח טריגר, איילת השחר. מספר המקומות מוגבל." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Never Again Challenge by BTW" />
+<meta property="og:description" content="חושבים שאתם יודעים לתפקד כשהדופק עולה? הגיע הזמן להוכיח את זה. 08.10.2026 · מטווח טריגר, איילת השחר" />
+<meta property="og:image" content="https://crossfit-site-sigma.vercel.app/never-again/btw-emblem.png" />
+<link rel="icon" type="image/png" href="/never-again/never-again-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #0a0a0a;
+    --panel: #141414;
+    --panel2: #1c1c1c;
+    --red: #b31217;
+    --red-bright: #e01e26;
+    --white: #f5f5f5;
+    --gray: #9a9a9a;
+    --line: rgba(255, 255, 255, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Heebo', system-ui, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+
+  h1, h2, h3 { font-weight: 900; line-height: 1.15; letter-spacing: -0.5px; }
+
+  .section { padding: 72px 0; }
+  .section-title { font-size: clamp(28px, 5vw, 44px); text-align: center; margin-bottom: 12px; }
+  .section-sub { text-align: center; color: var(--gray); max-width: 640px; margin: 0 auto 44px; font-size: 17px; }
+  .red { color: var(--red-bright); }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px 30px; border-radius: 10px;
+    font-weight: 700; font-size: 17px; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    border: none; text-align: center;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-red {
+    background: linear-gradient(180deg, var(--red-bright), var(--red));
+    color: #fff;
+    box-shadow: 0 8px 26px rgba(224, 30, 38, 0.35);
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(224, 30, 38, 0.5); }
+  .btn-ghost {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+  }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.06); }
+
+  /* ===== Reveal on scroll ===== */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); transition-delay: var(--d, 0ms); }
+  .rv.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 90px 20px 60px;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(179, 18, 23, 0.28), transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(179, 18, 23, 0.12), transparent 45%),
+      var(--black);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0 2px, transparent 2px 14px);
+  }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center 30%;
+    opacity: 0.22; filter: grayscale(60%) contrast(1.1);
+  }
+  .hero-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.55), rgba(10,10,10,0.35) 45%, var(--black) 96%); }
+  .hero > * { position: relative; }
+  .hero-logo { width: min(200px, 44vw); margin-bottom: 20px; filter: drop-shadow(0 12px 34px rgba(179,18,23,0.55)); animation: float 5s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .hero h1 { font-size: clamp(38px, 8vw, 76px); text-transform: uppercase; letter-spacing: 1px; }
+  .hero .by { font-size: clamp(16px, 3vw, 22px); font-weight: 700; letter-spacing: 6px; color: var(--red-bright); text-transform: uppercase; margin: 6px 0 18px; }
+  .hero p.lead { max-width: 560px; color: #d4d4d4; font-size: clamp(16px, 2.6vw, 20px); font-weight: 500; }
+  .hero .hook { margin-top: 14px; font-weight: 900; font-size: clamp(17px, 3vw, 23px); color: var(--white); }
+
+  .datebox {
+    display: flex; gap: 14px; align-items: stretch; justify-content: center; flex-wrap: wrap;
+    margin: 30px 0 26px;
+  }
+  .datechip {
+    background: rgba(20, 20, 20, 0.85); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 22px; backdrop-filter: blur(6px);
+  }
+  .datechip .big { font-size: clamp(30px, 6vw, 44px); font-weight: 900; color: var(--red-bright); line-height: 1; direction: ltr; }
+  .datechip .small { font-size: 13px; color: var(--gray); margin-top: 4px; font-weight: 500; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+  .scarcity { margin-top: 20px; font-size: 14px; color: var(--gray); }
+  .scarcity b { color: var(--white); }
+
+  /* ===== What awaits ===== */
+  .grid-skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .skill {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 18px; text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .skill:hover { transform: translateY(-4px); border-color: rgba(224,30,38,0.5); }
+  .skill svg { width: 34px; height: 34px; stroke: var(--red-bright); margin: 0 auto 12px; }
+  .skill h3 { font-size: 16px; margin-bottom: 6px; }
+  .skill p { font-size: 13.5px; color: var(--gray); line-height: 1.5; }
+  .tease { text-align: center; margin-top: 30px; color: var(--gray); font-size: 15px; }
+  .tease b { color: var(--red-bright); }
+
+  /* ===== Categories ===== */
+  .cats { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 760px) { .cats { grid-template-columns: 1fr 1fr; } }
+  .cat {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .cat::before { content: ''; position: absolute; inset-inline-start: 0; top: 0; bottom: 0; width: 4px; background: var(--red); }
+  .cat h3 { font-size: 24px; margin-bottom: 4px; }
+  .cat .tag { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: var(--red-bright); text-transform: uppercase; margin-bottom: 16px; }
+  .cat ul { list-style: none; margin-bottom: 22px; flex: 1; }
+  .cat li { padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 15px; display: flex; gap: 10px; align-items: baseline; }
+  .cat li:last-child { border-bottom: none; }
+  .cat li::before { content: '◆'; color: var(--red-bright); font-size: 10px; flex-shrink: 0; }
+  .price { font-size: 15px; color: var(--gray); }
+  .price b { color: var(--white); font-size: 20px; }
+  .cat .btn { width: 100%; margin-top: 18px; }
+  .limited {
+    display: inline-block; background: rgba(224, 30, 38, 0.12); color: var(--red-bright);
+    border: 1px solid rgba(224, 30, 38, 0.4); font-size: 12.5px; font-weight: 700;
+    border-radius: 999px; padding: 4px 12px; margin-top: 14px; width: fit-content;
+  }
+
+  /* ===== Timeline ===== */
+  .timeline { max-width: 620px; margin: 0 auto; position: relative; padding-inline-start: 30px; }
+  .timeline::before { content: ''; position: absolute; inset-inline-start: 9px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--red), rgba(179,18,23,0.15)); }
+  .tl-item { position: relative; padding-bottom: 30px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute; inset-inline-start: -27px; top: 7px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--black); border: 3px solid var(--red-bright);
+  }
+  .tl-item .when { font-weight: 900; color: var(--red-bright); font-size: 17px; direction: ltr; text-align: start; display: inline-block; }
+  .tl-item .what { font-size: 15.5px; color: #d4d4d4; }
+  .tl-item.final .when { font-size: 24px; }
+  .tl-item.final .what { font-weight: 700; color: var(--white); }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .qa { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .qa button {
+    all: unset; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; gap: 14px;
+    width: 100%; padding: 16px 18px; cursor: pointer; font-weight: 700; font-size: 15.5px; color: var(--white);
+  }
+  .qa button .chev { color: var(--red-bright); transition: transform 0.3s ease; flex-shrink: 0; }
+  .qa.open button .chev { transform: rotate(180deg); }
+  .qa .ans { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .qa.open .ans { max-height: 220px; }
+  .qa .ans p { padding: 0 18px 16px; color: var(--gray); font-size: 14.5px; }
+
+  /* ===== Final CTA ===== */
+  .final {
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 120%, rgba(179, 18, 23, 0.3), transparent 60%),
+      var(--panel);
+    border-top: 1px solid var(--line);
+  }
+  .final h2 { font-size: clamp(26px, 5vw, 42px); max-width: 700px; margin: 0 auto 14px; }
+  .final p { color: var(--gray); max-width: 560px; margin: 0 auto 30px; }
+  .final .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .brands { display: flex; align-items: center; justify-content: center; gap: 26px; margin-top: 48px; opacity: 0.85; }
+  .brands img { height: 54px; width: auto; }
+
+  footer { padding: 26px 20px 90px; text-align: center; color: #6b6b6b; font-size: 13px; border-top: 1px solid var(--line); }
+  footer a { color: var(--gray); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Floating WhatsApp */
+  .wa {
+    position: fixed; bottom: 18px; inset-inline-start: 18px; z-index: 50;
+    width: 54px; height: 54px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    animation: wa-pulse 2.4s ease-out infinite;
+  }
+  @keyframes wa-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+  .wa svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* Photo strip */
+  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .strip .ph { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .strip img { width: 100%; height: 320px; object-fit: cover; filter: saturate(0.85) contrast(1.05); transition: transform 0.6s ease; }
+  .strip .ph:hover img { transform: scale(1.05); }
+  @media (max-width: 640px) { .strip { grid-template-columns: 1fr; } .strip img { height: 240px; } }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <div class="hero-fade"></div>
+
+  <img class="hero-logo" src="/never-again/never-again-logo.png" alt="Never Again Challenge" />
+  <h1>Never Again<br />Challenge</h1>
+  <div class="by">by BTW</div>
+  <p class="lead">תחרות כושר וירי שמעמידה את היכולת שלכם לתפקד תחת עומס במבחן.</p>
+  <p class="hook">חושבים שאתם יודעים לתפקד כשהדופק עולה? <span class="red">הגיע הזמן להוכיח את זה.</span></p>
+
+  <div class="datebox">
+    <div class="datechip">
+      <div class="big">08.10.2026</div>
+      <div class="small">יום התחרות</div>
+    </div>
+    <div class="datechip">
+      <div class="big" style="font-size: clamp(20px, 4vw, 28px); padding-top: 8px; color: var(--white); direction: rtl;">מטווח טריגר</div>
+      <div class="small">איילת השחר</div>
+    </div>
+  </div>
+
+  <div class="hero-ctas">
+    <a class="btn btn-red" href="https://circle21.events/never-again-tactical-fitness-shooting-challange-by-btw" target="_blank" rel="noreferrer">להרשמה למוקדמות | יחידים</a>
+    <a class="btn btn-ghost" href="#pro">הגשת מועמדות | קבוצות</a>
+  </div>
+
+  <div class="scarcity">המקומות מוגבלים: <b>30 יחידים</b> · <b>6 קבוצות בלבד</b></div>
+</header>
+
+<!-- ===== WHAT AWAITS ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title rv">מה מחכה לכם?</h2>
+    <p class="section-sub rv">לא רק תחרות כושר. לא רק תחרות ירי. שילוב שמודד את מה שבאמת קובע בשטח —
+      היכולת לבצע כשהגוף צורח והראש חייב להישאר צלול.</p>
+
+    <div class="grid-skills">
+      <div class="skill rv" style="--d:0ms">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <h3>דופק גבוה</h3>
+        <p>לתפקד במדויק גם כשהלב דוהר</p>
+      </div>
+      <div class="skill rv" style="--d:100ms">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <h3>ריכוז ודיוק</h3>
+        <p>מעבר חד ממאמץ גופני למשימות ירי</p>
+      </div>
+      <div class="skill rv" style="--d:200ms">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>קבלת החלטות</h3>
+        <p>בחירות נכונות תחת לחץ ואי-ודאות</p>
+      </div>
+      <div class="skill rv" style="--d:300ms">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <h3>עומס ועייפות</h3>
+        <p>להמשיך לתפקד כשהגוף אומר די</p>
+      </div>
+    </div>
+
+    <p class="tease rv">את מבנה המקצים והמשימות המלאות תגלו רק בשטח. <b>חלק מהאתגר — הוא הלא-נודע.</b></p>
+  </div>
+</section>
+
+<!-- ===== PHOTOS ===== -->
+<section class="section" style="padding-top: 0;" id="photos-strip" hidden>
+  <div class="container">
+    <div class="strip">
+      <div class="ph rv"><img src="/never-again/range1.jpg" alt="אימון טקטי" loading="lazy" /></div>
+      <div class="ph rv" style="--d:120ms"><img src="/never-again/range2.jpg" alt="ירי טקטי" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="section" style="background: var(--panel); border-block: 1px solid var(--line);">
+  <div class="container">
+    <h2 class="section-title rv">קטגוריות התחרות</h2>
+    <p class="section-sub rv">שני מסלולים. סטנדרט אחד: ביצוע תחת עומס.</p>
+
+    <div class="cats">
+      <div class="cat rv">
+        <h3>אזרח לוחם</h3>
+        <div class="tag">יחידים · מוקדמות חובה</div>
+        <ul>
+          <li>תחרות אישית</li>
+          <li>רישיון נשק בתוקף</li>
+          <li>ניסיון בסיסי בירי</li>
+          <li>שלב מוקדמות מקדים — ההוראות המלאות נשלחות לאחר ההרשמה</li>
+          <li class="price">הרשמה למוקדמות: <b>$50</b></li>
+          <li class="price">השלמה למעפילים לתחרות: <b>$130</b> (סה"כ $180)</li>
+        </ul>
+        <span class="limited">עד 30 מתחרים בלבד</span>
+        <a class="btn btn-red" href="https://circle21.events/never-again-tactical-fitness-shooting-challange-by-btw" target="_blank" rel="noreferrer">להרשמה למוקדמות</a>
+      </div>
+
+      <div class="cat rv" style="--d:150ms" id="pro">
+        <h3>מקצוענים</h3>
+        <div class="tag">קבוצות · ללא מוקדמות</div>
+        <ul>
+          <li>קבוצות של 5 משתתפים</li>
+          <li>רקע בירי טקטי, רקע ביטחוני או ניסיון מבצעי מתאים</li>
+          <li>השתתפות מותנית בראיון אישי ואימות מוקדם בסטנדרט של BTW</li>
+          <li>קבוצה שאושרה מקבלת קוד הרשמה אישי למערכת</li>
+          <li class="price">עלות השתתפות: <b>$180</b> למשתתף</li>
+          <li>המחיר כולל את התחמושת (מסופקת ע"י המטווח)</li>
+        </ul>
+        <span class="limited">6 קבוצות בלבד · 30 מתחרים סה"כ</span>
+        <a class="btn btn-red" href="https://wa.me/972546575611?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%90%D7%A9%20%D7%A7%D7%91%D7%95%D7%A6%D7%94%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%92%D7%99%D7%A9%20%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%95%D7%AA%20%D7%9C-Never%20Again%20Challenge" target="_blank" rel="noreferrer">להגשת מועמדות כקבוצה</a>
+        <a class="btn btn-ghost" href="tel:054-6575611" style="margin-top: 10px;">054-6575611 · חיוג ישיר</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title rv">לוח זמנים</h2>
+    <p class="section-sub rv">שימו את התאריכים ביומן. אין הארכות.</p>
+
+    <div class="timeline">
+      <div class="tl-item rv">
+        <div class="when">19.07.2026 – 19.08.2026</div>
+        <div class="what">הרשמה למוקדמות (יחידים)</div>
+      </div>
+      <div class="tl-item rv" style="--d:100ms">
+        <div class="when">15.08.2026 – 29.08.2026</div>
+        <div class="what">תקופת ביצוע והגשת המוקדמות — כל ההוראות נשלחות לנרשמים</div>
+      </div>
+      <div class="tl-item rv final" style="--d:200ms">
+        <div class="when">08.10.2026</div>
+        <div class="what">יום התחרות · מטווח טריגר, איילת השחר</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" style="background: var(--panel); border-block: 1px solid var(--line);">
+  <div class="container">
+    <h2 class="section-title rv">שאלות נפוצות</h2>
+    <p class="section-sub rv"></p>
+
+    <div class="faq rv">
+      <div class="qa open">
+        <button>למי מיועדת קטגוריית היחידים? <span class="chev">▾</span></button>
+        <div class="ans"><p>לאזרחים חמושים בעלי רישיון נשק בתוקף וניסיון בסיסי בירי.</p></div>
+      </div>
+      <div class="qa">
+        <button>האם חייבים לעבור מוקדמות? <span class="chev">▾</span></button>
+        <div class="ans"><p>כן, בקטגוריית היחידים. קבוצות המקצוענים אינן נדרשות למוקדמות — במקומן: ראיון אישי ואימות מקצועי.</p></div>
+      </div>
+      <div class="qa">
+        <button>כמה עולה ההשתתפות? <span class="chev">▾</span></button>
+        <div class="ans"><p>יחידים: $50 להרשמה למוקדמות, ולאחר העפלה השלמה של $130 (סה"כ $180). קבוצות מקצוענים: $180 לכל משתתף.</p></div>
+      </div>
+      <div class="qa">
+        <button>האם התחמושת כלולה? <span class="chev">▾</span></button>
+        <div class="ans"><p>בקטגוריית הקבוצות — כן. המחיר כולל את התחמושת שתסופק על ידי המטווח.</p></div>
+      </div>
+      <div class="qa">
+        <button>כיצד נרשמים כקבוצה? <span class="chev">▾</span></button>
+        <div class="ans"><p>ראש הקבוצה פונה לצוות (בוואטסאפ או בטלפון 054-6575611). לאחר ראיון ואימות מקצועי, הקבוצה מקבלת קוד אישי להרשמה במערכת.</p></div>
+      </div>
+      <div class="qa">
+        <button>כמה משתתפים יהיו בתחרות? <span class="chev">▾</span></button>
+        <div class="ans"><p>עד 30 מתחרים בקטגוריית היחידים ועד 30 מתחרים (6 קבוצות של 5) בקטגוריית המקצוענים.</p></div>
+      </div>
+      <div class="qa">
+        <button>מתי ואיפה מתקיימת התחרות? <span class="chev">▾</span></button>
+        <div class="ans"><p>ב-08.10.2026, במטווח טריגר, איילת השחר.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="section final">
+  <div class="container">
+    <h2 class="rv">כשהדופק עולה — <span class="red">היכולת האמיתית נחשפת.</span></h2>
+    <p class="rv">אם אתם חושבים שאתם מסוגלים לשמור על ריכוז, דיוק וקבלת החלטות גם תחת מאמץ ולחץ — זה הזמן להיכנס לאתגר.</p>
+    <div class="btns rv">
+      <a class="btn btn-red" href="https://circle21.events/never-again-tactical-fitness-shooting-challange-by-btw" target="_blank" rel="noreferrer">להרשמה למוקדמות</a>
+      <a class="btn btn-ghost" href="https://wa.me/972546575611?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%90%D7%A9%20%D7%A7%D7%91%D7%95%D7%A6%D7%94%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%92%D7%99%D7%A9%20%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%95%D7%AA%20%D7%9C-Never%20Again%20Challenge" target="_blank" rel="noreferrer">להגשת מועמדות כקבוצה</a>
+    </div>
+    <div class="brands rv">
+      <img src="/never-again/never-again-logo.png" alt="Never Again" />
+      <img src="/never-again/btw-wordmark.png" alt="Be The Weapon — Bringing Manhood Back" style="height: 34px;" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  ליצירת קשר: <a href="tel:054-6575611">054-6575611</a> ·
+  <a href="https://wa.me/972546575611" target="_blank" rel="noreferrer">WhatsApp</a>
+  <br /><br />
+  תקנון, הצהרת בריאות ומדיניות ביטול — יפורסמו בהמשך.
+  <br />© 2026 BTW — Be The Weapon
+</footer>
+
+<a class="wa" href="https://wa.me/972546575611?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20Never%20Again%20Challenge" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.004 3C9.383 3 4 8.383 4 15.004c0 2.117.553 4.185 1.604 6.008L4 29l8.184-1.576a11.94 11.94 0 0 0 3.82.627h.001C22.625 28.05 28 22.668 28 16.047 28 9.426 22.625 3 16.004 3zm0 22.05h-.001a9.9 9.9 0 0 1-5.049-1.384l-.362-.215-4.857.935.99-4.735-.236-.389A9.964 9.964 0 0 1 6 15.004C6 9.487 10.487 5 16.004 5 21.52 5 26 9.53 26 16.047c0 5.517-4.48 9.003-9.996 9.003zm5.487-7.42c-.301-.15-1.781-.879-2.057-.979-.276-.1-.477-.15-.678.15-.2.301-.777.978-.953 1.179-.176.2-.351.226-.652.075-.301-.15-1.271-.468-2.42-1.493-.895-.798-1.499-1.784-1.674-2.085-.176-.301-.019-.464.132-.613.135-.135.301-.351.451-.527.15-.176.2-.301.301-.502.1-.2.05-.376-.025-.527-.075-.15-.678-1.633-.928-2.236-.244-.587-.492-.507-.678-.517l-.577-.01c-.2 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.512 0 1.482 1.079 2.914 1.229 3.115.15.2 2.123 3.242 5.144 4.546.719.31 1.28.496 1.717.635.722.229 1.379.197 1.898.119.579-.086 1.781-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.125-.276-.2-.577-.351z"/></svg>
+</a>
+
+<script>
+  // Reveal on scroll (with fail-open fallback)
+  const els = document.querySelectorAll('.rv');
+  const show = (el) => el.classList.add('on');
+  const inView = (el) => el.getBoundingClientRect().top < window.innerHeight * 0.95;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.01, rootMargin: '5000px 0px -20px 0px' });
+
+  els.forEach((el) => { if (inView(el)) show(el); else io.observe(el); });
+  const scrollCheck = () => els.forEach((el) => { if (inView(el)) show(el); });
+  window.addEventListener('scroll', scrollCheck, { passive: true });
+
+  // FAQ accordion
+  document.querySelectorAll('.qa button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const qa = btn.parentElement;
+      const wasOpen = qa.classList.contains('open');
+      document.querySelectorAll('.qa').forEach((x) => x.classList.remove('open'));
+      if (!wasOpen) qa.classList.add('open');
+    });
+  });
+
+  // Photo strip + hero photo: enable only if the images exist
+  const probe = new Image();
+  probe.onload = () => {
+    document.getElementById('photos-strip').hidden = false;
+    document.getElementById('heroPhoto').style.backgroundImage = "url('/never-again/range1.jpg')";
+  };
+  probe.src = '/never-again/range1.jpg';
+</script>
+</body>
+</html>
