@@ -2,7 +2,12 @@
   "rewrites": [
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "(www\\.)?neveragainchallenge\\.com" }],
+      "has": [{ "type": "host", "value": ".*neveragainchallenge\\.com" }],
+      "destination": "/never-again/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": ".*neveragainchallenge\\.com" }],
       "destination": "/never-again/index.html"
     },
     {
