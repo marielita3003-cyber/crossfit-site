@@ -8,7 +8,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Never Again Challenge by BTW" />
 <meta property="og:description" content="חושבים שאתם יודעים לתפקד כשהדופק עולה? הגיע הזמן להוכיח את זה. 08.10.2026 · מטווח טריגר, איילת השחר" />
-<meta property="og:image" content="https://crossfit-site-sigma.vercel.app/never-again/btw-emblem.png" />
+<meta property="og:image" content="https://crossfit-site-sigma.vercel.app/never-again/range1.jpg" />
 <link rel="icon" type="image/png" href="/never-again/never-again-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -70,7 +70,8 @@
   .rv { opacity: 0; transform: perspective(900px) translateY(30px) rotateX(8deg); transform-origin: center bottom; transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); transition-delay: var(--d, 0ms); }
   .rv.on { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0deg); }
   @media (prefers-reduced-motion: reduce) {
-    .rv, .hero h1, .cd-card, .hero-logo, .tiltable { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+    .rv, .hero h1, .cd-card, .hero-logo, .tiltable, .hero-photo { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+    .hero-photo { opacity: 0.3 !important; }
     .xhair { display: none !important; }
   }
 
@@ -93,9 +94,11 @@
   .hero-photo {
     position: absolute; inset: 0;
     background-size: cover; background-position: center 30%;
-    opacity: 0.22; filter: grayscale(60%) contrast(1.1);
+    opacity: 0.3; filter: grayscale(55%) contrast(1.15) brightness(0.85);
+    animation: hero-zoom 22s ease-in-out infinite alternate;
   }
-  .hero-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.55), rgba(10,10,10,0.35) 45%, var(--black) 96%); }
+  @keyframes hero-zoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+  .hero-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.62), rgba(10,10,10,0.42) 45%, var(--black) 96%); }
   .hero > * { position: relative; }
   .hero-logo { width: min(200px, 44vw); margin-bottom: 20px; filter: drop-shadow(0 12px 34px rgba(179,18,23,0.55)); animation: float 5s ease-in-out infinite; }
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -263,11 +266,19 @@
   .hero h1 { animation: glitch 6s infinite; }
 
   /* Photo strip */
-  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .strip .ph { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
-  .strip img { width: 100%; height: 320px; object-fit: cover; filter: saturate(0.85) contrast(1.05); transition: transform 0.6s ease; }
-  .strip .ph:hover img { transform: scale(1.05); }
-  @media (max-width: 640px) { .strip { grid-template-columns: 1fr; } .strip img { height: 240px; } }
+  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; perspective: 1200px; }
+  .strip .ph { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); position: relative; }
+  .strip .ph.wide { grid-column: 1 / -1; }
+  .strip img { width: 100%; height: 300px; object-fit: cover; filter: saturate(0.7) contrast(1.12) brightness(0.92); transition: transform 0.6s ease, filter 0.5s ease; }
+  .strip .ph::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 55%, rgba(179, 18, 23, 0.22));
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  .strip .ph:hover img { transform: scale(1.06); filter: saturate(1) contrast(1.05) brightness(1); }
+  .strip .ph:hover::after { opacity: 1; }
+  .strip .ph.wide img { height: 340px; }
+  @media (max-width: 640px) { .strip { grid-template-columns: 1fr; } .strip img, .strip .ph.wide img { height: 230px; } }
 </style>
 </head>
 <body>
@@ -347,8 +358,9 @@
 <section class="section" style="padding-top: 0;" id="photos-strip" hidden>
   <div class="container">
     <div class="strip">
-      <div class="ph rv"><img src="/never-again/range1.jpg" alt="אימון טקטי" loading="lazy" /></div>
-      <div class="ph rv" style="--d:120ms"><img src="/never-again/range2.jpg" alt="ירי טקטי" loading="lazy" /></div>
+      <div class="ph rv"><img src="/never-again/range2.jpg" alt="נשיאת קטלבלס במטווח" loading="lazy" /></div>
+      <div class="ph rv" style="--d:120ms"><img src="/never-again/hero-mobile.jpg" alt="מאמץ גופני לצד עמדת ירי" loading="lazy" /></div>
+      <div class="ph rv wide" style="--d:240ms"><img src="/never-again/range1.jpg" alt="עמדת ירי במטווח" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -510,12 +522,15 @@
   });
 
   // Photo strip + hero photo: enable only if the images exist
+  const heroSrc = window.matchMedia('(max-width: 767px)').matches
+    ? '/never-again/hero-mobile.jpg'
+    : '/never-again/range1.jpg';
   const probe = new Image();
   probe.onload = () => {
     document.getElementById('photos-strip').hidden = false;
-    document.getElementById('heroPhoto').style.backgroundImage = "url('/never-again/range1.jpg')";
+    document.getElementById('heroPhoto').style.backgroundImage = `url('${heroSrc}')`;
   };
-  probe.src = '/never-again/range1.jpg';
+  probe.src = heroSrc;
 
   const fine = window.matchMedia('(pointer: fine)').matches;
   const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
