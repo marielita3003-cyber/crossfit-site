@@ -264,6 +264,24 @@
   }
   .hero h1 { animation: glitch 6s infinite; }
 
+  /* ===== Vision ===== */
+  .vision { background: var(--panel); border-block: 1px solid var(--line); position: relative; overflow: hidden; }
+  .vision-wrap { max-width: 720px; margin: 0 auto; position: relative; }
+  .vision-mark {
+    position: absolute; inset-inline-end: -8px; top: -46px;
+    font-size: clamp(70px, 15vw, 150px); font-weight: 900; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1.5px rgba(224, 30, 38, 0.16);
+    letter-spacing: -3px; pointer-events: none; user-select: none; direction: ltr;
+  }
+  .vision-text { position: relative; }
+  .vision-text p { color: #c9c9c9; font-size: clamp(15.5px, 2.4vw, 18px); line-height: 1.95; margin-bottom: 18px; }
+  .vision-text p b { color: var(--white); font-weight: 700; }
+  .vision-close {
+    border-inline-start: 3px solid var(--red); padding-inline-start: 16px;
+    font-size: clamp(17px, 3vw, 22px) !important; font-weight: 700;
+    color: var(--white) !important; margin-top: 26px;
+  }
+
   /* ===== Editorial photo band ===== */
   .band {
     position: relative; overflow: hidden;
@@ -349,6 +367,35 @@
 
   <div class="scarcity">המקומות מוגבלים: <b>30 יחידים</b> · <b>6 קבוצות בלבד</b></div>
 </header>
+
+<!-- ===== VISION ===== -->
+<section class="section vision" id="vision">
+  <div class="container">
+    <div class="vision-wrap rv">
+      <div class="vision-mark" aria-hidden="true">07.10</div>
+      <h2 class="section-title" style="text-align: start;">למה אנחנו כאן</h2>
+      <div class="vision-text">
+        <p>
+          ב-7 באוקטובר נכשלו המערכות שאמורות היו להגן על אזרחי ישראל.
+          בשעות הראשונות, מי שעמד בין המשפחות לבין מה שקרה — היו אזרחים.
+          חלקם היו מוכנים. רבים מדי לא היו.
+        </p>
+        <p>
+          <b>מכאן נולד החזון שלנו:</b> אזרח לוחם — כשיר גופנית, מיומן מעשית,
+          ומסוגל לתפקד ברגע האמת. לא תיאוריה ולא מטווח סטרילי, אלא יכולת אמיתית
+          שעומדת במבחן כשהדופק גבוה והראש צריך להישאר צלול.
+        </p>
+        <p>
+          אנחנו כאן כדי להעיר מחדש תרבות של הגנה עצמית —
+          שבה כושר, מיומנות ואחריות אישית הם חלק משגרת החיים, לא פרויקט לשעת חירום.
+        </p>
+        <p class="vision-close">
+          התחרות הזו היא לא סוף הדרך. <span class="red">היא נקודת ההתחלה.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== WHAT AWAITS ===== -->
 <section class="section">
