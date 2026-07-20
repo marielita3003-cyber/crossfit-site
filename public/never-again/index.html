@@ -70,7 +70,8 @@
   .rv { opacity: 0; transform: perspective(900px) translateY(30px) rotateX(8deg); transform-origin: center bottom; transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); transition-delay: var(--d, 0ms); }
   .rv.on { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0deg); }
   @media (prefers-reduced-motion: reduce) {
-    .rv, .hero h1, .cd-card, .hero-logo, .tiltable, .hero-photo { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+    .rv, .hero h1, .cd-card, .hero-logo, .tiltable, .hero-photo, .band-photo, .final-photo { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+    .final-photo { opacity: 0.55 !important; }
     .hero-photo { opacity: 0.3 !important; }
     .xhair { display: none !important; }
   }
@@ -191,9 +192,7 @@
   /* ===== Final CTA ===== */
   .final {
     text-align: center;
-    background:
-      radial-gradient(ellipse at 50% 120%, rgba(179, 18, 23, 0.3), transparent 60%),
-      var(--panel);
+    background: var(--panel);
     border-top: 1px solid var(--line);
   }
   .final h2 { font-size: clamp(26px, 5vw, 42px); max-width: 700px; margin: 0 auto 14px; }
@@ -265,20 +264,51 @@
   }
   .hero h1 { animation: glitch 6s infinite; }
 
-  /* Photo strip */
-  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; perspective: 1200px; }
-  .strip .ph { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); position: relative; }
-  .strip .ph.wide { grid-column: 1 / -1; }
-  .strip img { width: 100%; height: 300px; object-fit: cover; filter: saturate(0.7) contrast(1.12) brightness(0.92); transition: transform 0.6s ease, filter 0.5s ease; }
-  .strip .ph::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(180deg, transparent 55%, rgba(179, 18, 23, 0.22));
-    opacity: 0; transition: opacity 0.4s ease;
+  /* ===== Editorial photo band ===== */
+  .band {
+    position: relative; overflow: hidden;
+    min-height: 78svh; display: flex; align-items: center;
+    border-block: 1px solid var(--line);
   }
-  .strip .ph:hover img { transform: scale(1.06); filter: saturate(1) contrast(1.05) brightness(1); }
-  .strip .ph:hover::after { opacity: 1; }
-  .strip .ph.wide img { height: 340px; }
-  @media (max-width: 640px) { .strip { grid-template-columns: 1fr; } .strip img, .strip .ph.wide img { height: 230px; } }
+  .band-photo {
+    position: absolute; inset: -6%;
+    background-image: url('/never-again/range2.jpg');
+    background-size: cover; background-position: 60% 40%;
+    filter: grayscale(75%) contrast(1.2) brightness(0.62);
+    will-change: transform;
+  }
+  .band-veil {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(10,10,10,0.94) 8%, rgba(10,10,10,0.72) 45%, rgba(10,10,10,0.25) 78%),
+      linear-gradient(180deg, var(--black), transparent 22%, transparent 78%, var(--black));
+  }
+  .band-inner { position: relative; width: 100%; }
+  .band-kicker { font-size: 12.5px; font-weight: 700; letter-spacing: 5px; color: var(--red-bright); text-transform: uppercase; margin-bottom: 14px; }
+  .band-title { font-size: clamp(34px, 7vw, 66px); line-height: 1.02; margin-bottom: 18px; }
+  .band-text { max-width: 480px; color: #cfcfcf; font-size: clamp(15px, 2.3vw, 18px); line-height: 1.75; }
+  @media (max-width: 767px) {
+    .band { min-height: 68svh; }
+    .band-photo { background-position: 62% 35%; }
+    .band-veil { background: linear-gradient(180deg, rgba(10,10,10,0.9) 5%, rgba(10,10,10,0.72) 40%, rgba(10,10,10,0.95)); }
+  }
+
+  /* ===== Final CTA photo backdrop ===== */
+  .final { position: relative; overflow: hidden; }
+  .final-photo {
+    position: absolute; inset: -5%;
+    background-image: url('/never-again/hero-mobile.jpg');
+    background-size: cover; background-position: center 32%;
+    filter: grayscale(80%) contrast(1.25) brightness(0.5);
+    opacity: 0.55; will-change: transform;
+  }
+  .final-veil {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 115%, rgba(179, 18, 23, 0.42), transparent 62%),
+      linear-gradient(180deg, var(--black) 2%, rgba(10,10,10,0.72) 40%, rgba(10,10,10,0.92));
+  }
+  .final .container { position: relative; z-index: 2; }
 </style>
 </head>
 <body>
@@ -354,13 +384,18 @@
   </div>
 </section>
 
-<!-- ===== PHOTOS ===== -->
-<section class="section" style="padding-top: 0;" id="photos-strip" hidden>
-  <div class="container">
-    <div class="strip">
-      <div class="ph rv"><img src="/never-again/range2.jpg" alt="נשיאת קטלבלס במטווח" loading="lazy" /></div>
-      <div class="ph rv" style="--d:120ms"><img src="/never-again/hero-mobile.jpg" alt="מאמץ גופני לצד עמדת ירי" loading="lazy" /></div>
-      <div class="ph rv wide" style="--d:240ms"><img src="/never-again/range1.jpg" alt="עמדת ירי במטווח" loading="lazy" /></div>
+<!-- ===== SPLIT BAND: fitness meets shooting ===== -->
+<section class="band" id="band">
+  <div class="band-photo"></div>
+  <div class="band-veil"></div>
+  <div class="container band-inner">
+    <div class="rv">
+      <div class="band-kicker">כושר · ירי · תפקוד</div>
+      <h2 class="band-title">בין המאמץ<br /><span class="red">לרגע האמת</span></h2>
+      <p class="band-text">
+        מסלול אחד עובר דרך קטלבלס, שקי חול וריצה. השני דורש נשימה יציבה, אחיזה נקייה ופגיעה במטרה.
+        כאן הם נפגשים — ושם נמדדת היכולת האמיתית.
+      </p>
     </div>
   </div>
 </section>
@@ -471,6 +506,8 @@
 
 <!-- ===== FINAL CTA ===== -->
 <section class="section final">
+  <div class="final-photo" id="finalPhoto"></div>
+  <div class="final-veil"></div>
   <div class="container">
     <h2 class="rv">כשהדופק עולה — <span class="red">היכולת האמיתית נחשפת.</span></h2>
     <p class="rv">אם אתם חושבים שאתם מסוגלים לשמור על ריכוז, דיוק וקבלת החלטות גם תחת מאמץ ולחץ — זה הזמן להיכנס לאתגר.</p>
@@ -521,13 +558,12 @@
     });
   });
 
-  // Photo strip + hero photo: enable only if the images exist
+  // Hero photo: desktop / mobile variant
   const heroSrc = window.matchMedia('(max-width: 767px)').matches
     ? '/never-again/hero-mobile.jpg'
     : '/never-again/range1.jpg';
   const probe = new Image();
   probe.onload = () => {
-    document.getElementById('photos-strip').hidden = false;
     document.getElementById('heroPhoto').style.backgroundImage = `url('${heroSrc}')`;
   };
   probe.src = heroSrc;
@@ -599,12 +635,26 @@
     }, { passive: true });
   }
 
-  // ===== Hero scroll parallax =====
+  // ===== Scroll parallax: hero + editorial band + final backdrop =====
   if (!noMotion) {
     const heroPhoto = document.getElementById('heroPhoto');
     const heroContent = document.querySelectorAll('.hero > *:not(.hero-photo):not(.hero-fade)');
+    const bandPhoto = document.querySelector('.band-photo');
+    const band = document.getElementById('band');
+    const finalPhoto = document.getElementById('finalPhoto');
+    const finalSec = document.querySelector('.final');
+
+    const drift = (photo, section, strength) => {
+      if (!photo || !section) return;
+      const r = section.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      // -1 (section entering from below) → 1 (leaving above)
+      const p = (window.innerHeight / 2 - (r.top + r.height / 2)) / (window.innerHeight / 2 + r.height / 2);
+      photo.style.transform = `translateY(${p * strength}px)`;
+    };
+
     let raf = 0;
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const y = window.scrollY;
@@ -612,8 +662,12 @@
           heroContent.forEach((el) => { el.style.translate = `0 ${y * 0.25}px`; });
           heroPhoto.style.translate = `0 ${y * 0.12}px`;
         }
+        drift(bandPhoto, band, 60);
+        drift(finalPhoto, finalSec, 45);
       });
-    }, { passive: true });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 </script>
 </body>
