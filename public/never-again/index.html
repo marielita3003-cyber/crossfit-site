@@ -66,10 +66,13 @@
   }
   .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.06); }
 
-  /* ===== Reveal on scroll ===== */
-  .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); transition-delay: var(--d, 0ms); }
-  .rv.on { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; transition: none !important; } }
+  /* ===== Reveal on scroll (3D entrance) ===== */
+  .rv { opacity: 0; transform: perspective(900px) translateY(30px) rotateX(8deg); transform-origin: center bottom; transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); transition-delay: var(--d, 0ms); }
+  .rv.on { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .rv, .hero h1, .cd-card, .hero-logo, .tiltable { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+    .xhair { display: none !important; }
+  }
 
   /* ===== Hero ===== */
   .hero {
@@ -214,6 +217,51 @@
   }
   .wa svg { width: 28px; height: 28px; fill: #fff; }
 
+  /* ===== 3D tilt cards ===== */
+  .tiltable { transform-style: preserve-3d; transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; position: relative; }
+  .tiltable .glare {
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 60, 60, 0.14), transparent 60%);
+    opacity: 0; transition: opacity 0.25s ease-out;
+  }
+  .tiltable:hover .glare { opacity: 1; }
+
+  /* ===== Countdown ===== */
+  .countdown { display: flex; gap: 10px; justify-content: center; direction: ltr; margin-top: 26px; perspective: 600px; }
+  .cd-unit { text-align: center; }
+  .cd-card {
+    min-width: 66px; padding: 12px 8px 8px; border-radius: 12px;
+    background: linear-gradient(180deg, #1e1e1e, #101010);
+    border: 1px solid var(--line); border-top: 2px solid rgba(224, 30, 38, 0.6);
+    font-size: clamp(26px, 5vw, 38px); font-weight: 900; color: var(--white);
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+  }
+  .cd-card.flip { animation: cd-flip 0.5s ease; }
+  @keyframes cd-flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(-88deg); filter: brightness(1.6); } 100% { transform: rotateX(0); } }
+  .cd-label { font-size: 11px; letter-spacing: 2px; color: var(--gray); margin-top: 6px; text-transform: uppercase; font-weight: 700; }
+
+  /* ===== Crosshair cursor (desktop only) ===== */
+  @media (pointer: fine) {
+    .xhair { position: fixed; top: 0; left: 0; z-index: 999; pointer-events: none; translate: -50% -50%; width: 42px; height: 42px; transition: width 0.15s ease, height 0.15s ease; }
+    .xhair::before, .xhair::after { content: ''; position: absolute; background: rgba(224, 30, 38, 0.85); }
+    .xhair::before { left: 50%; top: 0; bottom: 0; width: 1.5px; translate: -50% 0; }
+    .xhair::after { top: 50%; left: 0; right: 0; height: 1.5px; translate: 0 -50%; }
+    .xhair .ring { position: absolute; inset: 6px; border: 1.5px solid rgba(224, 30, 38, 0.65); border-radius: 50%; }
+    .xhair.lock { width: 58px; height: 58px; }
+    .xhair.lock .ring { border-color: var(--red-bright); box-shadow: 0 0 18px rgba(224, 30, 38, 0.6); }
+  }
+
+  /* ===== Title glitch ===== */
+  @keyframes glitch {
+    0%, 92%, 100% { text-shadow: none; transform: none; }
+    93% { text-shadow: 3px 0 var(--red-bright), -3px 0 #3aa0ff; transform: translateX(2px); }
+    95% { text-shadow: -3px 0 var(--red-bright), 3px 0 #3aa0ff; transform: translateX(-2px); }
+    97% { text-shadow: 2px 0 var(--red-bright); transform: none; }
+  }
+  .hero h1 { animation: glitch 6s infinite; }
+
   /* Photo strip */
   .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .strip .ph { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
@@ -246,7 +294,14 @@
     </div>
   </div>
 
-  <div class="hero-ctas">
+  <div class="countdown" id="cd" aria-label="ספירה לאחור לתחרות">
+    <div class="cd-unit"><div class="cd-card" data-u="d">00</div><div class="cd-label">ימים</div></div>
+    <div class="cd-unit"><div class="cd-card" data-u="h">00</div><div class="cd-label">שעות</div></div>
+    <div class="cd-unit"><div class="cd-card" data-u="m">00</div><div class="cd-label">דקות</div></div>
+    <div class="cd-unit"><div class="cd-card" data-u="s">00</div><div class="cd-label">שניות</div></div>
+  </div>
+
+  <div class="hero-ctas" style="margin-top: 26px;">
     <a class="btn btn-red" href="https://circle21.events/never-again-tactical-fitness-shooting-challange-by-btw" target="_blank" rel="noreferrer">להרשמה למוקדמות | יחידים</a>
     <a class="btn btn-ghost" href="#pro">הגשת מועמדות | קבוצות</a>
   </div>
@@ -313,6 +368,7 @@
           <li>רישיון נשק בתוקף</li>
           <li>ניסיון בסיסי בירי</li>
           <li>שלב מוקדמות מקדים — ההוראות המלאות נשלחות לאחר ההרשמה</li>
+          <li>התחמושת מסופקת על ידי המטווח במקום</li>
           <li class="price">הרשמה למוקדמות: <b>$50</b></li>
           <li class="price">השלמה למעפילים לתחרות: <b>$130</b> (סה"כ $180)</li>
         </ul>
@@ -329,7 +385,7 @@
           <li>השתתפות מותנית בראיון אישי ואימות מוקדם בסטנדרט של BTW</li>
           <li>קבוצה שאושרה מקבלת קוד הרשמה אישי למערכת</li>
           <li class="price">עלות השתתפות: <b>$180</b> למשתתף</li>
-          <li>המחיר כולל את התחמושת (מסופקת ע"י המטווח)</li>
+          <li>המחיר כולל את התחמושת — מסופקת על ידי המטווח במקום</li>
         </ul>
         <span class="limited">6 קבוצות בלבד · 30 מתחרים סה"כ</span>
         <a class="btn btn-red" href="https://wa.me/972546575611?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%90%D7%A9%20%D7%A7%D7%91%D7%95%D7%A6%D7%94%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%92%D7%99%D7%A9%20%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%95%D7%AA%20%D7%9C-Never%20Again%20Challenge" target="_blank" rel="noreferrer">להגשת מועמדות כקבוצה</a>
@@ -383,7 +439,7 @@
       </div>
       <div class="qa">
         <button>האם התחמושת כלולה? <span class="chev">▾</span></button>
-        <div class="ans"><p>בקטגוריית הקבוצות — כן. המחיר כולל את התחמושת שתסופק על ידי המטווח.</p></div>
+        <div class="ans"><p>כן. המטווח יספק את התחמושת במקום לכלל המשתתפים בתחרות.</p></div>
       </div>
       <div class="qa">
         <button>כיצד נרשמים כקבוצה? <span class="chev">▾</span></button>
@@ -460,6 +516,90 @@
     document.getElementById('heroPhoto').style.backgroundImage = "url('/never-again/range1.jpg')";
   };
   probe.src = '/never-again/range1.jpg';
+
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== Live countdown with 3D flip =====
+  const target = new Date('2026-10-08T08:00:00+03:00').getTime();
+  const cards = { d: null, h: null, m: null, s: null };
+  document.querySelectorAll('.cd-card').forEach((c) => (cards[c.dataset.u] = c));
+  const setVal = (unit, val) => {
+    const el = cards[unit];
+    const txt = String(val).padStart(2, '0');
+    if (el.textContent !== txt) {
+      el.textContent = txt;
+      if (!noMotion) { el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); }
+    }
+  };
+  const tickCd = () => {
+    let diff = Math.max(0, target - Date.now());
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+    const m = Math.floor(diff / 60000); diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    setVal('d', d); setVal('h', h); setVal('m', m); setVal('s', s);
+  };
+  tickCd();
+  setInterval(tickCd, 1000);
+
+  // ===== 3D tilt with glare on cards =====
+  if (fine && !noMotion) {
+    document.querySelectorAll('.cat, .skill, .datechip, .cd-card').forEach((card) => {
+      card.classList.add('tiltable');
+      const glare = document.createElement('span');
+      glare.className = 'glare';
+      card.appendChild(glare);
+      const max = card.classList.contains('cat') ? 6 : 10;
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        card.style.transform = `perspective(700px) rotateX(${(0.5 - py) * 2 * max}deg) rotateY(${(px - 0.5) * 2 * max}deg) translateZ(6px)`;
+        card.style.setProperty('--gx', `${px * 100}%`);
+        card.style.setProperty('--gy', `${py * 100}%`);
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    // ===== Hero logo 3D + parallax =====
+    const logo = document.querySelector('.hero-logo');
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+      const px = e.clientX / window.innerWidth - 0.5;
+      const py = e.clientY / window.innerHeight - 0.5;
+      logo.style.transform = `perspective(600px) rotateY(${px * 24}deg) rotateX(${-py * 24}deg)`;
+    });
+    hero.addEventListener('mouseleave', () => { logo.style.transform = ''; });
+
+    // ===== Crosshair cursor =====
+    const xh = document.createElement('div');
+    xh.className = 'xhair';
+    xh.innerHTML = '<span class="ring"></span>';
+    document.body.appendChild(xh);
+    window.addEventListener('mousemove', (e) => {
+      xh.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      const t = e.target.closest('a, button');
+      xh.classList.toggle('lock', !!t);
+    }, { passive: true });
+  }
+
+  // ===== Hero scroll parallax =====
+  if (!noMotion) {
+    const heroPhoto = document.getElementById('heroPhoto');
+    const heroContent = document.querySelectorAll('.hero > *:not(.hero-photo):not(.hero-fade)');
+    let raf = 0;
+    window.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroContent.forEach((el) => { el.style.translate = `0 ${y * 0.25}px`; });
+          heroPhoto.style.translate = `0 ${y * 0.12}px`;
+        }
+      });
+    }, { passive: true });
+  }
 </script>
 </body>
 </html>
